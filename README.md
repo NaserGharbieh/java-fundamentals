@@ -5,4 +5,4 @@
 - String pluralize(String word, int num) 
 
 - void flipNHeads(int n)
-- void clock()
+- void clock() 

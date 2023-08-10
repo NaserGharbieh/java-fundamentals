@@ -7,10 +7,7 @@ package basiclibrary;
 import java.util.Random;
 
 public class Library {
-    public static void main(String[] args) {
-        roll(4);
 
-    }
 public static int [] roll (int n){
         int [] diceRolls= new int[n];
 
@@ -70,5 +67,9 @@ public static int genarateRandomNumber(){
         return lowestAvgArray;
     }
 
-
+    public static void printArray(int [] arr)  {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
 }

@@ -1,5 +1,3 @@
-Certainly! Here's a README.md file describing each class and the methods inside the inheritance project:
-
 # Inheritance Project
 
 This project demonstrates the concept of inheritance in Java through the implementation of various classes. Inheritance allows one class to inherit the properties and behaviors of another class, promoting code reusability and organization.

@@ -58,8 +58,7 @@ public class App {
         return winner;
     }
     public static void checkForMissingSemicolons(Path filePath) throws IOException {
-        Path filePath2 = Path.of("linter/app/src/main/resources/gates.js");
-        try (BufferedReader reader = Files.newBufferedReader(filePath2)) {
+        try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
             int lineNumber = 1;
 
@@ -74,6 +73,16 @@ public class App {
 
                 lineNumber++;
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            Path gates = Path.of("C:/Users/NASER GHARBIEH/projects/java-fundamentals/linter/app/src/main/resources/gates.js");
+            //it did NOT work but with the Absolute path !!!
+            checkForMissingSemicolons(gates);
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.toString());
         }
     }
 

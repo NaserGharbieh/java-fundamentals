@@ -2,10 +2,10 @@ package inheritance;
 
 public class Review {
     private String author;
-    private double numberOfStars;
+    private int numberOfStars;
     private String body;
 
-    public Review(String author, double numberOfStars, String body) {
+    public Review(String author, int numberOfStars, String body) {
         this.author = author;
         this.numberOfStars = numberOfStars;
         this.body = body;
@@ -28,11 +28,11 @@ public class Review {
         this.author = author;
     }
 
-    public double getNumberOfStars() {
+    public int getNumberOfStars() {
         return numberOfStars;
     }
 
-    public void setNumberOfStars(double numberOfStars) {
+    public void setNumberOfStars(int numberOfStars) {
         this.numberOfStars = numberOfStars;
     }
 

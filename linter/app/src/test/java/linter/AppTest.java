@@ -5,11 +5,13 @@ package linter;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 class AppTest {
@@ -50,6 +52,70 @@ class AppTest {
         String actualWinner = App.tally(votes);
 
         assertEquals(expectedWinner, actualWinner);
+    }
+    @Test
+    public void testCheckForMissingSemicolons_NoErrors() throws IOException {
+        Path filePath = Paths.get("src/test/resources/testNoErrors.js");
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        App.checkForMissingSemicolons(filePath);
+
+        String expectedOutput = "";
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void testCheckForMissingSemicolons_OneError() throws IOException {
+        Path filePath = Paths.get("src/test/resources/testOneError.js");
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        App.checkForMissingSemicolons(filePath);
+
+        String expectedOutput = "Line 2: Missing semicolon.\r\n";
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void testCheckForMissingSemicolons_FewErrors() throws IOException {
+        Path filePath = Paths.get("src/test/resources/testFewErrors.js");
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        App.checkForMissingSemicolons(filePath);
+
+        String expectedOutput = "Line 2: Missing semicolon.\r\nLine 9: Missing semicolon.\r\nLine 11: Missing semicolon.\r\n";
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void testCheckForMissingSemicolons_ManyErrors() throws IOException {
+        Path filePath = Paths.get("src/test/resources/testManyErrors.js");
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        App.checkForMissingSemicolons(filePath);
+
+        String expectedOutput = "Line 2: Missing semicolon.\r\nLine 5: Missing semicolon.\r\nLine 6: Missing semicolon.\r\nLine 9: Missing semicolon.\r\nLine 11: Missing semicolon.\r\n" ;
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void testCheckForMissingSemicolons_EmptyFile() throws IOException {
+        Path filePath = Paths.get("src/test/resources/testEmptyFile.js");
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        App.checkForMissingSemicolons(filePath);
+
+        String expectedOutput = "";
+        assertEquals(expectedOutput, outputStream.toString());
     }
 
 

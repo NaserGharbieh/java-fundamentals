@@ -79,8 +79,10 @@ public class Restaurant {
 
     public void addReview(Review review){
         this.review=review;
-        if (this.rating ==-1)
-            this.rating =review.getNumberOfStars();
+         if (this.rating ==-1)
+         this.rating =review.getNumberOfStars();
+
+
 
     }
     public void addMultipleReviews( List<Review> reviews){
@@ -93,6 +95,15 @@ public class Restaurant {
         rate= sum/reviews.size();
         this.rating=rate;
 
+    }
+    public void calculateRating(){
+        int sum=0;
+        int rate=0;
+        for (Review rev:this.reviews) {
+            sum+=rev.getNumberOfStars();
+        }
+        rate= sum/this.reviews.size();
+        this.rating=rate;
     }
 
 

@@ -21,6 +21,7 @@ public class RestaurantTest {
         Review review1 = new Review("Bob", 3, "Average place!");
         Restaurant restaurant2 = new Restaurant("Another Restaurant", 3, 0);
         restaurant2.addReview(review1);
+        System.out.println(restaurant2.toString());
 
 
         assertEquals(review1, restaurant2.getReview());
@@ -58,5 +59,15 @@ public class RestaurantTest {
        String expectedString = "Restaurant{name='Test Restaurant', rating=0, priceCategory=2.0, review='null'}";
 
         assertEquals(expectedString, restaurant.toString());
+    }
+    @Test
+    public void testToStringAfteraddingRev() {
+        Review review1 = new Review("Bob", 3, "Average place!");
+        Restaurant restaurant2 = new Restaurant("Another Restaurant", 3, 0);
+        restaurant2.addReview(review1);
+
+        String expectedString = "Restaurant{name='Another Restaurant', rating=3, priceCategory=0.0, review='Review{author='Bob', numberOfStars=3, body='Average place!'}'}";
+
+        assertEquals(expectedString, restaurant2.toString());
     }
 }

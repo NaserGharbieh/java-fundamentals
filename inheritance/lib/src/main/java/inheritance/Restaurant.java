@@ -1,15 +1,15 @@
 package inheritance;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant {
+public class Restaurant implements Reviewable {
     private String name;
-    private int rating =-1;
+    private int rating = -1;
     private double priceCategory;
     private Review review;
-    private  List<Review> reviews;
-
+    private List<Review> reviews;
 
 
     public Restaurant(String name, int rating, double priceCategory) {
@@ -17,8 +17,6 @@ public class Restaurant {
         this.rating = rating;
         this.priceCategory = priceCategory;
     }
-
-
 
 
     public String getName() {
@@ -44,6 +42,7 @@ public class Restaurant {
     public void setPriceCategory(double priceCategory) {
         this.priceCategory = priceCategory;
     }
+
     public Review getReview() {
         return review;
     }
@@ -51,7 +50,6 @@ public class Restaurant {
     public void setReview(Review review) {
         this.review = review;
     }
-
 
 
     public String toStringReviewslist() {
@@ -73,40 +71,39 @@ public class Restaurant {
                 ", review='" + review + '\'' +
                 '}';
     }
+
     public List<Review> getReviews() {
         return reviews;
     }
 
-    public void addReview(Review review){
-        this.review=review;
-         if (this.rating ==-1)
-         this.rating =review.getNumberOfStars();
+    public void addReview(Review review) {
+        this.review = review;
+        if (this.reviews==null)
+            reviews = new ArrayList<>();
 
+        this.reviews.add(review);
+        calculateRating();
 
 
     }
-    public void addMultipleReviews( List<Review> reviews){
-        this.reviews=reviews;
-        int sum=0;
-        int rate=0;
-        for (Review rev:reviews) {
-            sum+=rev.getNumberOfStars();
+
+    public void addMultipleReviews(List<Review> reviews) {
+        if (this.reviews==null)
+            this.reviews = new ArrayList<>(reviews);
+        else this.reviews.addAll(reviews);
+        calculateRating();
+
+    }
+
+    public void calculateRating() {
+        int sum = 0;
+        int rate = 0;
+        for (Review rev : this.reviews) {
+            sum += rev.getNumberOfStars();
         }
-        rate= sum/reviews.size();
-        this.rating=rate;
-
+        rate = sum / this.reviews.size();
+        this.rating = rate;
     }
-    public void calculateRating(){
-        int sum=0;
-        int rate=0;
-        for (Review rev:this.reviews) {
-            sum+=rev.getNumberOfStars();
-        }
-        rate= sum/this.reviews.size();
-        this.rating=rate;
-    }
-
-
 
 
 }

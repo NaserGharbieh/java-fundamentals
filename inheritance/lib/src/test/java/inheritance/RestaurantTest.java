@@ -42,7 +42,7 @@ public class RestaurantTest {
        reviews.add(review3);
 
 
-       Restaurant restaurant = new Restaurant("Sample Restaurant", 0, 0);
+
 
        // Add multiple reviews to the restaurant
        restaurant.addMultipleReviews(reviews);
@@ -69,5 +69,27 @@ public class RestaurantTest {
         String expectedString = "Restaurant{name='Another Restaurant', rating=3, priceCategory=0.0, review='Review{author='Bob', numberOfStars=3, body='Average place!'}'}";
 
         assertEquals(expectedString, restaurant2.toString());
+    }
+
+    @Test
+    public void testAddMultiAndSingleReview(){
+        Review review1 = new Review("Alice", 5, "Great place!");
+        Review review2 = new Review("Bob", 4, "Good food!");
+        Review review3 = new Review("Charlie", 2, "Not impressed");
+        Review review4 = new Review("Bob", 3, "Average place!");
+
+        ArrayList reviews = new ArrayList();
+        reviews.add(review1);
+        reviews.add(review2);
+        reviews.add(review3);
+
+
+
+
+        // Add multiple reviews to the restaurant
+        restaurant.addMultipleReviews(reviews);
+        restaurant.addReview(review4);
+        assertEquals(3,restaurant.getRating());
+
     }
 }

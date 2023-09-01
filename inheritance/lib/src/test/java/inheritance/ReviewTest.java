@@ -30,7 +30,7 @@ public class ReviewTest {
 
     @Test
     public void testToString() {
-        String expectedString = "Review{author='John Doe', numberOfStars=4.0, body='Sample Review'}";
+        String expectedString = "Review{author='John Doe', numberOfStars=4, body='Sample Review'}";
         assertEquals(expectedString, review.toString());
     }
 }

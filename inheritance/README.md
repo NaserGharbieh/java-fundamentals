@@ -43,6 +43,7 @@ The `ReviewTest` class contains JUnit tests for the methods in the `Review` clas
 - `testToString()`: Tests the `toString` method to ensure correct string representation.
 
 
+
 ### `Reviewable` Interface
 
 The `Reviewable` interface defines the methods for adding and managing reviews:
@@ -132,6 +133,7 @@ The `TheaterTest` class is a JUnit Jupiter test class for testing the functional
 - `addTheaterReviewWithoutMovie()`: Tests adding a review without specifying a movie to the theater's reviews.
 
 These test methods ensure that the `Theater` class and its associated operations function correctly.
+
 
 
 

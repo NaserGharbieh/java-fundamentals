@@ -3,6 +3,9 @@ package inheritance;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopTest {
@@ -50,5 +53,35 @@ public class ShopTest {
     public void testToString() {
         String expectedString = "Shop{name='Test Shop', priceCategory='High', description='Sample description'}";
         assertEquals(expectedString, shop.toString());
+    }
+    @Test
+    public void addReview() {
+        Review review = new Review("Test User", 4,"A review");
+        shop.addReview(review);
+        List<Review> expectedReviews = new ArrayList<>();
+        expectedReviews.add(review);
+       int expectedRating= review.getNumberOfStars();
+        assertEquals(expectedReviews, shop.getReviews());
+        assertEquals(expectedRating, shop.getRating());
+
+
+    }
+
+    @Test
+    public void addMultipleReviews() {
+        Review review1 = new Review("Test User 1",  4,"A review");
+        Review review2 = new Review("Test User 2",  5,"Another review");
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(review1);
+        reviews.add(review2);
+        shop.addMultipleReviews(reviews);
+        List<Review> expectedReviews = new ArrayList<>();
+        expectedReviews.add(review1);
+        expectedReviews.add(review2);
+        int expectedRating= shop.getRating();
+        assertEquals(expectedReviews, shop.getReviews());
+        assertEquals(expectedRating, shop.getRating());
+
+
     }
 }

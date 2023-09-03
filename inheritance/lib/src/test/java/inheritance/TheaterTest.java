@@ -39,4 +39,22 @@ public class TheaterTest {
         String expectedString = "Theater{name='Test Theater', movies=[Movie 1, Movie 2]}";
         assertEquals(expectedString, theater.toString());
     }
+    @Test
+    public void addTheaterReviewWithMovie() {
+        MovieReview review = new MovieReview("Test User", 4, "A review", "Test Movie");
+        theater.addReview(review);
+        List<Review> expectedReviews = new ArrayList<>();
+        expectedReviews.add(review);
+        assertEquals(expectedReviews, theater.getReviews());
+    }
+
+    @Test
+    public void addTheaterReviewWithoutMovie() {
+        Review review = new Review("Test User", 4,"A review");
+        theater.addReview(review);
+        List<Review> expectedReviews = new ArrayList<>();
+        expectedReviews.add(review);
+        assertEquals(expectedReviews, theater.getReviews());
+    }
 }
+
